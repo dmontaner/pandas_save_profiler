@@ -1,7 +1,10 @@
 # Pandas Save Profiler
 
-`pandas_save_profiler` helps you evaluating and comparing performance of different pandas read and write methods.
+`pandas_save_profiler` helps you evaluating and comparing the performance of different pandas read and write methods.
 
+## Install
+
+    pip install pandas-save-profiler
 
 ## Usage
 
@@ -15,7 +18,7 @@ Load `pandas_save_profiler` and use it to evaluate pandas performance saving a _
     import pandas_save_profiler
     data.save_profiler('to_pickle')
 
-output is a pandas series:
+The output is a pandas series:
 
 ```
 format                                                 pickle
@@ -40,21 +43,19 @@ dtype: object
 
 Values in the series indicate:
 
-- The __format__ used to persist the file as well as writing and reading options.
+- The __format__ used to persist the dataframe and the writing and reading options.
 - Writing and reading __times__ in seconds.
 - Writing and reading __memory__ increment.
-- In memory size of the dataframe.
+- Size of the dataframe in memory.
 - __Size__ of the saved file.
 
-Memory values are in bytes but also a "humanized" version is reported.
-
+Memory values are in __bytes__ but a "humanized" version is also reported.
 The saving and reloading process is __repeated__ 5 times and average values are returned.
+The flag `reads_the_same` indicates whether the reloaded file is exactly the same as the original one or has some differences.
 
-The flag `reads_the_same` indicates whether the reloaded file is exactly the same as the original one or has some difference.
 
-
-In order to compare several saving methods you can use the `save_profiler` function with each of them
-and combine the results in a final dataframe:
+To __compare several writing options__ you can use the `save_profiler` function on each of them
+and combine the results into a results dataframe:
 
 ```
 pd.DataFrame([
@@ -88,8 +89,3 @@ returns:
 1        110.8 MB   288 Bytes      1.1 kB        5            True  
 2        118.0 MB   288 Bytes      3.4 kB        5            True  
 ```
-
-
-## Install
-
-    pip install pandas_save_profiler
